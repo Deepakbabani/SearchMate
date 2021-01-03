@@ -1,0 +1,91 @@
+import webbrowser
+import youtube_dl,os
+import pafy
+import tkinter
+from tkinter import *
+from tkinter import messagebox
+import pyfiglet
+win = Tk()
+win.title("SearchMate")
+win.configure(bg = "#17202A") 
+win.geometry("455x500")
+win.resizable(width = False,height = False)                         
+def video():
+    url = z.get()
+    path = y.get()
+    vid = pafy.new(url)
+    streams = vid.streams
+    best = vid.getbest()
+    messagebox.showinfo("Details",vid)
+    best.download(path)
+    messagebox.showinfo("video","Download Finished Successfully...")
+    os.startfile(path)
+def audio():
+    url = z.get()
+    path = y.get()
+    aud = pafy.new(url)
+    best = aud.getbestaudio()
+    messagebox.showinfo("Details",aud)
+    best.download(path)
+    messagebox.showinfo("Audio","Download Finished Successfully...")
+    os.startfile(path)
+def google():
+    search = x.get()
+    webbrowser.open("https://www.google.com/search?q="+search)
+def yt():
+    search = x.get()
+    webbrowser.open("https://www.youtube.com/results?search_query="+search)
+def fb():
+    search = x.get()
+    webbrowser.open("https://www.facebook.com/search/top/?q="+search)
+def ig():
+    search = x.get()
+    webbrowser.open("https://www.instagram.com/"+search)
+def tw():
+    search = x.get()
+    webbrowser.open("https://www.twitter.com/"+search)
+def wiki():
+    search = x.get()
+    webbrowser.open("https://en.wikipedia.org/wiki/"+search)
+def img():
+    search = x.get()
+    webbrowser.open("https://www.google.com/search?q=images/"+search)
+x = tkinter.StringVar()
+y = tkinter.StringVar()
+z = tkinter.StringVar()
+u = pyfiglet.figlet_format("Search_Mate",font="bubble")
+b1 = Button(win,text="Google",fg="white",bg="#3b5998",command=google)
+b2 = Button(win,text="YouTube",fg="white",bg="#FF0000",command=yt)
+b3 = Button(win,text="FaceBook",fg="white",bg="#C13584",command=fb)
+b4 = Button(win,text="Instagram",fg="white",bg="#00acee",command=ig)
+b5 = Button(win,text="Twitter",fg="white",bg="#202020",command=tw)
+b6 = Button(win,text="Wikipedia",fg="white",bg="#FF0000",command=wiki)
+b7 = Button(win,text="Images",fg="white",bg="#3b5998",command=img)
+b8 = Button(win,text="Video",fg="white",bg="#FF0000",command=video)
+b9 = Button(win,text="Audio",fg="white",bg="#FF0000",command=audio)
+b1.place(x=10,y=180,width=80,height=30)
+b2.place(x=100,y=180,width=80,height=30)
+b3.place(x=190,y=180,width=80,height=30)
+b4.place(x=10,y=215,width=80,height=30)
+b5.place(x=100,y=215,width=80,height=30)
+b6.place(x=190,y=215,width=80,height=30)
+b7.place(x=10,y=250,width=80,height=30)
+b8.place(x=10,y=430,width=90,height=30)
+b9.place(x=100,y=430,width=90,height=30)
+e1 = Entry(win,textvariable=x)
+e1.place(x=10,y=140,width=300,height=30)
+e2 = Entry(win,textvariable=z)
+e2.place(x=10,y=350,width=300,height=30)
+e3 = Entry(win,textvariable=y)
+e3.place(x=10,y=390,width=300,height=30)
+l = Label(win,text=u,font=40,bg = "#2C3E50",fg = "#EAECEE")
+l1 = Label(win,text="(Content..)",font=40)
+l2 = Label(win,text="YouTube Videos or Audios Downloader",font=40,bg = "#2C3E50",fg = "#EAECEE")
+l3 = Label(win,text="(URL)",font=80)
+l4 = Label(win,text="(Enter_Path)",font=40)
+l.place(x=70,y=10)
+l1.place(x=320,y=140)
+l2.place(x=30,y=305)
+l3.place(x=320,y=350)
+l4.place(x=317,y=390)
+win.mainloop()
